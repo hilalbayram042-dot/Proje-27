@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loginForm = document.getElementById('loginForm');
     const logoutButton = document.getElementById('logoutButton');
+    const showRegisterFormLink = document.getElementById('showRegisterFormLink'); // Add this line
 
     const loginEmailInput = document.getElementById('loginEmail');
     const loginPasswordInput = document.getElementById('loginPassword');

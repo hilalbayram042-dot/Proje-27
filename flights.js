@@ -78,16 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const finalPrice = pricePerPassenger * passengerCount;
 
-        // Create an array of seat placeholders
-        const selectedSeats = Array.from({ length: passengerCount }, (_, i) => `Koltuk ${i + 1}`);
-
         const bookingDetails = {
             ...currentFlightData,
+            adults: passengerCount,
+            children: 0,
             finalPrice: finalPrice,
             airline: 'Bilinmeyen Havayolu',
             flightNumber: 'Bilinmiyor',
             seatClass: selectedClass,
-            selectedSeats: selectedSeats,
             isConnecting: false,
             arrivalTime: 'Bilinmiyor'
         };

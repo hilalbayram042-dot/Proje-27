@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         sessionStorage.setItem('flightSearchCriteria', JSON.stringify(searchCriteria));
-        window.location.href = 'flight-results.html';
+        window.location.href = 'flights.html';
     });
 
     // Initial setup

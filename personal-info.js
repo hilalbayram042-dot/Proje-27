@@ -1,89 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const passengerFormsContainer = document.getElementById('passenger-forms-container');
     const confirmBookingBtn = document.getElementById('confirm-booking-btn');
-    const flightSummaryContainer = document.getElementById('flight-summary');
 
     // Retrieve booking data from sessionStorage
     const bookingDetails = JSON.parse(sessionStorage.getItem('bookingDetails'));
 
     // If no data, redirect back to the main page
-    if (!bookingDetails || !bookingDetails.selectedSeats || bookingDetails.selectedSeats.length === 0) {
+    if (!bookingDetails) {
         window.location.href = 'index.html';
         return;
     }
 
     // --- Functions ---
 
-    function renderFlightSummary() {
-        if (!flightSummaryContainer) return;
-
-        // Simple styling for the summary box
-        const style = document.createElement('style');
-        style.textContent = `
-            .flight-summary-container {
-                border: 1px solid #ddd;
-                padding: 20px;
-                border-radius: 8px;
-                margin-bottom: 25px;
-                background-color: #f9f9f9;
-                color: #000000; /* Black text for all content */
-            }
-            .flight-summary-container h2 {
-                margin-top: 0;
-                border-bottom: 2px solid #eee;
-                padding-bottom: 10px;
-                margin-bottom: 15px;
-                color: #000000; /* Black text for the heading */
-            }
-            .summary-item {
-                display: flex;
-                justify-content: space-between;
-                padding: 8px 0;
-                border-bottom: 1px solid #eee;
-            }
-            .summary-item:last-child {
-                border-bottom: none;
-            }
-            .summary-item strong {
-                color: #000000; /* Black text for strong elements */
-            }
-        `;
-        document.head.appendChild(style);
-
-        const summaryHtml = `
-            <h2>Uçuş Bilgileri</h2>
-            <div class="summary-item">
-                <strong>Nereden:</strong>
-                <span>${bookingDetails.from}</span>
-            </div>
-            <div class="summary-item">
-                <strong>Nereye:</strong>
-                <span>${bookingDetails.to}</span>
-            </div>
-            <div class="summary-item">
-                <strong>Tarih:</strong>
-                <span>${bookingDetails.departureDate}</span>
-            </div>
-            <div class="summary-item">
-                <strong>Saat:</strong>
-                <span>${bookingDetails.departureTime}</span>
-            </div>
-             <div class="summary-item">
-                <strong>Koltuk:</strong>
-                <span>${bookingDetails.selectedSeats.join(', ')}</span>
-            </div>
-            <div class="summary-item">
-                <strong>Fiyat:</strong>
-                <span>${bookingDetails.finalPrice} TL</span>
-            </div>
-        `;
-        flightSummaryContainer.innerHTML = summaryHtml;
-    }
-
     function generatePassengerForms() {
         passengerFormsContainer.innerHTML = ''; // Clear container
-        // The title should reflect that forms are for the selected number of passengers (seats)
-        const passengerCount = bookingDetails.selectedSeats.length;
+        const passengerCount = bookingDetails.adults + bookingDetails.children;
         const formTitle = document.createElement('h2');
         formTitle.textContent = `${passengerCount} Yolcu İçin Bilgileri Giriniz`;
         passengerFormsContainer.appendChild(formTitle);
@@ -92,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 1; i <= passengerCount; i++) {
             const formHtml = `
                 <div class="passenger-form" id="passenger-form-${i}">
-                    <h3>${i}. Yolcu Bilgileri (Koltuk: ${bookingDetails.selectedSeats[i - 1]})</h3>
+                    <h3>${i}. Yolcu Bilgileri</h3>
                     <div class="form-group">
                         <label for="tc-${i}">TC Kimlik Numarası</label>
                         <input type="text" id="tc-${i}" name="tc" pattern="[0-9]{11}" title="11 haneli TC Kimlik Numaranızı giriniz.">
@@ -133,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleConfirmBooking() {
         const passengersData = [];
-        const passengerCount = bookingDetails.selectedSeats.length;
+        const passengerCount = bookingDetails.adults + bookingDetails.children;
         let allFormsValid = true;
 
         for (let i = 1; i <= passengerCount; i++) {
@@ -179,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bookingDetails.passengers = passengersData;
         sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
 
-        // Redirect to the payment page
-        window.location.href = 'payment.html';
+        // Redirect to the reservation page
+        window.location.href = 'reservation.html';
     }
 
 
@@ -189,8 +121,5 @@ document.addEventListener('DOMContentLoaded', () => {
     confirmBookingBtn.addEventListener('click', handleConfirmBooking);
 
     // Initial calls to render the page content
-    if (!bookingDetails.fromReservation) {
-        renderFlightSummary();
-    }
     generatePassengerForms();
 });

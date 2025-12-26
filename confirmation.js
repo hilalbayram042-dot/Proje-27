@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Final booking confirmed:', bookingDetails);
     console.log(`(Simulated) Tickets sent to: ${recipientEmail}`);
 
+    // --- Persist the purchased ticket to localStorage ---
+    let purchasedTickets = JSON.parse(localStorage.getItem('purchasedTickets')) || [];
+    purchasedTickets.push(bookingDetails);
+    localStorage.setItem('purchasedTickets', JSON.stringify(purchasedTickets));
+    // --- End persistence logic ---
+
     // Handle home button click
     homeBtn.addEventListener('click', () => {
         // Clear all session data related to the booking

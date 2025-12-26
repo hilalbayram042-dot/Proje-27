@@ -2,27 +2,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get all relevant elements
     const loginFormSection = document.getElementById('loginFormSection');
-    const registerFormSection = document.getElementById('registerFormSection');
     const loggedInSection = document.getElementById('loggedInSection');
     const myTicketsSection = document.getElementById('myTicketsSection');
     const ticketListDiv = document.getElementById('ticketList');
 
     const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
     const logoutButton = document.getElementById('logoutButton');
-
-    const showRegisterFormLink = document.getElementById('showRegisterForm');
-    const showLoginFormLink = document.getElementById('showLoginForm');
 
     const loginEmailInput = document.getElementById('loginEmail');
     const loginPasswordInput = document.getElementById('loginPassword');
-
-    const regFirstNameInput = document.getElementById('regFirstName');
-    const regLastNameInput = document.getElementById('regLastName');
-    const regTcInput = document.getElementById('regTc');
-    const regPhoneInput = document.getElementById('regPhone');
-    const regEmailInput = document.getElementById('regEmail');
-    const regPasswordInput = document.getElementById('regPassword');
 
     const welcomeMessage = document.getElementById('welcomeMessage');
 

@@ -30,5 +30,6 @@
     "have_account_prompt": "Zaten hesabın var mı?",
     "login_now_link": "Şimdi Giriş Yap!",
     "welcome_message": "Hoş Geldiniz, [Kullanıcı Adı]!",
-    "logout_button": "Çıkış Yap"
+    "logout_button": "Çıkış Yap",
+    "select_city": "Şehir Seçin"
 }

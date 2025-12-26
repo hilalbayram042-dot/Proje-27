@@ -33,11 +33,11 @@
                     </div>
                     <div class="form-group">
                         <label for="from" data-translate="from">Nereden</label>
-                        <input type="text" id="from" name="from" placeholder="Şehir veya Havalimanı" required>
+                        <select id="from" name="from" required></select>
                     </div>
                     <div class="form-group">
                         <label for="to" data-translate="to">Nereye</label>
-                        <input type="text" id="to" name="to" placeholder="Şehir veya Havalimanı" required>
+                        <select id="to" name="to" required></select>
                     </div>
                     <div class="form-group">
                         <label for="departure-date" data-translate="departure_date">Gidiş Tarihi</label>
@@ -69,5 +69,46 @@
     </div>
     <script src="script.js"></script>
     <script src="translation.js"></script>
+    <script src="cities.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const fromSelect = document.getElementById('from');
+            const toSelect = document.getElementById('to');
+
+            function addPlaceholder(selectElement) {
+                const placeholder = document.createElement('option');
+                placeholder.value = "";
+                placeholder.textContent = "Şehir Seçin"; // Fallback text
+                placeholder.setAttribute('data-translate', 'select_city');
+                placeholder.disabled = true;
+                placeholder.selected = true;
+                selectElement.appendChild(placeholder);
+            }
+
+            addPlaceholder(fromSelect);
+            addPlaceholder(toSelect);
+
+            cities.forEach(city => {
+                const option1 = document.createElement('option');
+                option1.value = city;
+                option1.textContent = city;
+                fromSelect.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = city;
+                option2.textContent = city;
+                toSelect.appendChild(option2);
+            });
+            
+            // Re-translate the page to catch the new elements
+            if (typeof translatePage === 'function') {
+                const savedLang = localStorage.getItem('language') || 'tr';
+                // The translations might not be loaded yet, so we wait for them
+                loadTranslations(savedLang).then(() => {
+                    translatePage(savedLang);
+                });
+            }
+        });
+    </script>
 </body>
 </html>

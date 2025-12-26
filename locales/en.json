@@ -30,5 +30,6 @@
     "have_account_prompt": "Already have an account?",
     "login_now_link": "Login Now!",
     "welcome_message": "Welcome, [Username]!",
-    "logout_button": "Logout"
+    "logout_button": "Logout",
+    "select_city": "Select a City"
 }

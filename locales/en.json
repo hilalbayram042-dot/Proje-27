@@ -1,0 +1,15 @@
+{
+    "reviews_link": "Reviews",
+    "membership_link": "Membership Page",
+    "cancel_reservation_link": "Cancel Reservation",
+    "flights_link": "Flights",
+    "reservations_link": "Reservations",
+    "contact_link": "Contact",
+    "language_button": "Language",
+    "welcome_title": "Welcome to Our Airline",
+    "welcome_subtitle": "Enjoy flying with us. Your new journey is just a click away.",
+    "ticket_info_title": "Purchased Ticket Information",
+    "purchased_tickets_heading": "Purchased Ticket Information",
+    "your_tickets": "Your Tickets",
+    "no_tickets_found": "No tickets found yet."
+}
